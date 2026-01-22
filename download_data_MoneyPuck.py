@@ -13,7 +13,7 @@ import itertools
 BASE_URL = "https://moneypuck.com/moneypuck/playerData/seasonSummary/"
 
 # Save path 
-BASE_PATH = Path(r"data\raw")
+BASE_PATH = Path(r"data\MoneyPuck\raw")
 OVERWRITE = True
 
 # DOWNLOAD PARAMETERS

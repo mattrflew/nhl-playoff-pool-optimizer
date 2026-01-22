@@ -39,3 +39,5 @@ Goalies:
 [MoneyPuck.com](https://moneypuck.com/data.htm) provides a simple API to download NHL player and team data over different seasons.
 
 The [NHL API](https://github.com/Zmalski/NHL-API-Reference?tab=readme-ov-file#get-boxscore) could be a useful source as well.
+
+[RotoWire](https://www.rotowire.com/hockey/stats.php) allows for manual downloading of data.
