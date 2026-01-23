@@ -1,11 +1,8 @@
 import json
-from pathlib import Path
 
-from nhl_pool.dataset.api import load_json_gz
 from nhl_pool.config import RAW_DIR, REFERENCE_DIR
-
-from nhl_pool.dataset.api import NHLAPI
-
+from nhl_pool.dataset.api import load_json_gz
+from nhl_pool.dataset.fetch.team_codes import team_codes_raw_path
 
 def extract_team_codes(data):
     '''
@@ -50,18 +47,14 @@ def extract_team_codes(data):
 
     return out
 
-def run_team_codes(force_fetch=False):
-    # Call API
-    api = NHLAPI()
-    api.get_team_codes(force=force_fetch)
-    
+def build_team_codes():
     # define paths
-    raw_path = RAW_DIR / "team_codes" / "team_codes.json.gz"
+    raw_path = team_codes_raw_path()
     out_path = REFERENCE_DIR / "team_codes.json"
     out_path.parent.mkdir(parents=True, exist_ok=True)
     
     # Load object
-    raw_obj = api._load_from_cache(raw_path)
+    raw_obj = load_json_gz(raw_path)
     
     # Extract info
     processed = extract_team_codes(raw_obj)

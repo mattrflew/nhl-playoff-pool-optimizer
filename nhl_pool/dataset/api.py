@@ -21,7 +21,7 @@ def save_json_gz(path: Path, obj):
     tmp.replace(path)
 
 class NHLAPI:
-    BASE_URL_WEB = "https://api-web.nhle.com/"
+    BASE_URL_WEB = "https://api-web.nhle.com/v1/"
     BASE_URL_STATS = "https://api.nhle.com/stats/rest/en/"
     
     def __init__(self, raw_root=RAW_DIR, sleep_s=0.05, timeout_s=30, retries=2):
@@ -46,7 +46,7 @@ class NHLAPI:
         save_json_gz(cache_path, data)
 
     #### INTERACT WITH API
-    def _make_request(self, base_url, endpoint, params=None, force=False):
+    def _make_request(self, base_url, endpoint, force=False):
         """
         Internal helper method to make a GET request to an endpoint.
         """
@@ -80,7 +80,35 @@ class NHLAPI:
         endpoint = self._team_codes_endpoint()
         data = self._make_request(base_url=self.BASE_URL_STATS, endpoint=endpoint, force=force)
         
-        # Save to file
+        # Save to cache
+        self._save_to_cache(data, cache_path)
+        
+        return data
+
+    # Player stats by team and season
+    def _player_stats_endpoint(self, abbrev, season, season_type):
+        return f"club-stats/{abbrev}/{season}/{season_type}"
+    
+    def get_team_roster_stats(self, params, force=False):
+        '''Fetches the stats for an entire team's roster for a single season.'''
+        # Unpack params
+        abbrev = params["abbrev"]
+        season = params["season"]
+        season_type = params["season_type"]
+        
+        cache_path = self._cache_path(str(season), str(season_type), f"{str(abbrev)}.json.gz")
+        
+        # Return if cache already exists
+        if not force:
+            cached = self._load_from_cache(cache_path)
+            if cached is not None:
+                return cached
+        
+        # Call API
+        endpoint = self._player_stats_endpoint(abbrev, season, season_type)
+        data = self._make_request(base_url=self.BASE_URL_WEB, endpoint=endpoint, force=force)
+        
+        # Save to cache
         self._save_to_cache(data, cache_path)
         
         return data
