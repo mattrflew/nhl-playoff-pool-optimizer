@@ -4,11 +4,14 @@ Build the highest scoring NHL playoff pool roster using machine learning project
 
 ## Project Goal
 
-Every year, my family runs a Stanley Cup playoff pool. This project is a system to:
+Every year, my family runs a NHL Stanley Cup playoff pool. This project is a system to:
 
 1. Simulate playoff bracket outcomes (ELO Ranking & Monte Carlo Methods)
 2. Predict player points for the playoffs (Machine Learning)
 3. Select an optimal fantasy roster (Linear Programming)
+4. And most importantly, win the playoff pool (Bragging Rights).
+
+While this project might break the spirit of a fun family competition, it provides for an interesting project. I have also consistently done poorly in this playoff pool, so I clearly need to change my old strategy of hurriedly choosing players the day before the deadline.
 
 ## Fantasy League Rules
 
@@ -36,8 +39,9 @@ Goalies:
 
 ## Data
 
-[MoneyPuck.com](https://moneypuck.com/data.htm) provides a simple API to download NHL player and team data over different seasons.
+The NHL API will be the source of data.
 
-The [NHL API](https://github.com/Zmalski/NHL-API-Reference?tab=readme-ov-file#get-boxscore) could be a useful source as well.
+There are two useful community documentations of this API.
 
-[RotoWire](https://www.rotowire.com/hockey/stats.php) allows for manual downloading of data.
+- https://github.com/Zmalski/NHL-API-Reference
+- https://gitlab.com/dword4/nhlapi/-/blob/master/new-api.md

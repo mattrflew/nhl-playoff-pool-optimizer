@@ -1,2 +1,14 @@
+# Local data
 /data
+
+# Virtual Environment
 /venv
+
+# Packaging artefacts
+nhl_playoff_pool_optimizer.egg-info/
+
+# Python cache
+__pycache__/
+
+# Jupyter
+.ipynb_checkpoints/
