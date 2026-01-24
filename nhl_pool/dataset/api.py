@@ -1,6 +1,7 @@
 # NHL API Class (fetch and cache only)
 
 import json, gzip
+import time
 from pathlib import Path
 import requests
 from nhl_pool.config import RAW_DIR
@@ -46,19 +47,25 @@ class NHLAPI:
         save_json_gz(cache_path, data)
 
     #### INTERACT WITH API
-    def _make_request(self, base_url, endpoint, force=False):
+    def _make_request(self, base_url, endpoint):
         """
         Internal helper method to make a GET request to an endpoint.
         """
         url = f"{base_url}{endpoint}"
         self.query_url = url
-        try:
-            response = self.session.get(url, timeout=self.timeout_s)
-            response.raise_for_status() # Raise an exception for bad status codes (4xx or 5xx)
-            return response.json()
-        except requests.exceptions.RequestException as e:
-            print(f"An error occurred: {e}")
-            return None
+        
+        last_err = None
+        for attempt in range(1, self.retries+1):        
+            try:
+                response = self.session.get(url, timeout=self.timeout_s)
+                response.raise_for_status() # Raise an exception for bad status codes (4xx or 5xx)
+                return response.json()
+            except requests.exceptions.RequestException as e:
+                last_err = e
+                if attempt < self.retries:
+                    time.sleep(self.sleep_s)
+                else:
+                    raise
     
     #### GET
     
@@ -79,6 +86,9 @@ class NHLAPI:
         # Call API
         endpoint = self._team_codes_endpoint()
         data = self._make_request(base_url=self.BASE_URL_STATS, endpoint=endpoint, force=force)
+        
+        if data is None:
+            return None
         
         # Save to cache
         self._save_to_cache(data, cache_path)
@@ -106,7 +116,7 @@ class NHLAPI:
         
         # Call API
         endpoint = self._player_stats_endpoint(abbrev, season, season_type)
-        data = self._make_request(base_url=self.BASE_URL_WEB, endpoint=endpoint, force=force)
+        data = self._make_request(base_url=self.BASE_URL_WEB, endpoint=endpoint)
         
         # Save to cache
         self._save_to_cache(data, cache_path)

@@ -3,10 +3,10 @@ from pathlib import Path
 from nhl_pool.config import RAW_DIR
 from nhl_pool.dataset.api import NHLAPI 
 
-def team_codes_raw_path() -> Path:
+def team_codes_raw_path():
     return RAW_DIR / "team_codes" / "team_codes.json.gz"
 
-def fetch_team_codes(force: bool = False) -> Path:
+def fetch_team_codes(force=False):
     """
     Fetch + cache raw team codes JSON to data/raw.
     Returns the raw cache path.
