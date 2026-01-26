@@ -122,3 +122,30 @@ class NHLAPI:
         self._save_to_cache(data, cache_path)
         
         return data
+    
+    # Player stats by team and season
+    def _team_schedule_endpoint(self, abbrev, season):
+        return f"club-schedule-season/{abbrev}/{season}"
+    
+    def get_team_schedule(self, params, force=False):
+        '''Fetches the schedule for one team for a single season.'''
+        # Unpack params
+        abbrev = params["abbrev"]
+        season = params["season"]
+        
+        cache_path = self._cache_path(str(season), "schedules", f"{str(abbrev)}.json.gz")
+        
+        # Return if cache already exists
+        if not force:
+            cached = self._load_from_cache(cache_path)
+            if cached is not None:
+                return cached
+        
+        # Call API
+        endpoint = self._team_schedule_endpoint(abbrev, season)
+        data = self._make_request(base_url=self.BASE_URL_WEB, endpoint=endpoint)
+        
+        # Save to cache
+        self._save_to_cache(data, cache_path)
+        
+        return data

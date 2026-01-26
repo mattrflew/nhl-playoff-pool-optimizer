@@ -1,6 +1,6 @@
 import json
 
-from nhl_pool.config import RAW_DIR, REFERENCE_DIR
+from nhl_pool.config import REFERENCE_DIR
 from nhl_pool.dataset.api import load_json_gz
 from nhl_pool.dataset.fetch.fetch_team_codes import team_codes_raw_path
 
