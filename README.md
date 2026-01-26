@@ -39,9 +39,41 @@ Goalies:
 
 ## Data
 
-The NHL API will be the source of data.
-
-There are two useful community documentations of this API.
+All data for this project is sourced from the public NHL API. There are two useful community-maintained documentations of this API:
 
 - https://github.com/Zmalski/NHL-API-Reference
 - https://gitlab.com/dword4/nhlapi/-/blob/master/new-api.md
+
+These resources were used to identify endpoints for team metadata, schedules, and player statistics.
+
+### Downloading data
+
+The entire data ingestion pipeline can be run via the following script:
+
+```
+python -m nhl_pool.dataset.scripts.run_all
+```
+
+This script performs the full workflow:
+
+1. Fetches and builds team code reference data,
+2. Downloads team schedules across seasons and compiles game-level data (boxscore information),
+3. Downloads player statistics by team and season, and compiles them into tables.
+
+All raw API responses are saved as cache to a _data/raw_ directory at the root of the repository.
+
+Similarly, processed results ready for analysis exist at _data/processed_.
+
+All code used to query the API and compile data exists in
+
+```
+nhl_pool/dataset
+```
+
+At a high level:
+
+- _fetch/_ contains wrappers for NHL API endpoints,
+- _pipeliens/_ handles compiling raw responses into tables,
+- _scripts/_ provides run-able scripts for the run and build steps.
+
+The pipeline is modular such that individual components (i.e. only running player stats) can be run independently if desired.
