@@ -11,7 +11,7 @@ Every year, my family runs a NHL Stanley Cup playoff pool. This project is a sys
 3. Select an optimal fantasy roster (Linear Programming)
 4. And most importantly, win the playoff pool (Bragging Rights).
 
-While this project might break the spirit of a fun family competition, it provides for an interesting project. I have also consistently done poorly in this playoff pool, so I clearly need to change my old strategy of hurriedly choosing players the day before the deadline.
+While this might break the spirit of a fun family competition, it provides for an interesting project. I have also consistently done poorly in this playoff pool, so I clearly need to change my old strategy of hurriedly choosing players the day before the deadline.
 
 ## Fantasy League Rules
 

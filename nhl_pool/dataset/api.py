@@ -85,7 +85,7 @@ class NHLAPI:
             
         # Call API
         endpoint = self._team_codes_endpoint()
-        data = self._make_request(base_url=self.BASE_URL_STATS, endpoint=endpoint, force=force)
+        data = self._make_request(base_url=self.BASE_URL_STATS, endpoint=endpoint)
         
         if data is None:
             return None

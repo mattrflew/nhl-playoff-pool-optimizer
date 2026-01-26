@@ -44,7 +44,7 @@ def extract_game_info_from_schedule(path):
 def build_games():
     '''Search for all team schedules in the raw/cached data and save relevant information to one .csv file.'''
     
-    # Get paths of all save schedules
+    # Get paths of all saved schedules
     schedule_files = list(RAW_DIR.glob("*/schedules/*.json.gz"))
     rows = []
     

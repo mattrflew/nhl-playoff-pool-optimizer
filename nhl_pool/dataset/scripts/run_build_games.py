@@ -1,5 +1,4 @@
 import json
-from typing import Union
 import itertools
 import requests
 
@@ -15,33 +14,33 @@ def run_build_games():
     out = build_games()
     print(f"Wrote: {out}")
 
-if __name__ == "__main__":
-    
+def run_build_games_script(
+    start_year: int = 2015,
+    end_year: int = 2024,
+    season_types=(None,),
+    force_fetch: bool = False,
+):
     # Read in team codes
-    with open(TEAM_CODES_REF_DIR, 'r') as f:
-        team_dicts = json.load(f) 
-    
-    # Set query parameters
-    abbrevs = [t["abbrev"] for t in team_dicts]
-    query_years = [i for i in range(2015,2024+1)]
-    query_season_types = [None] # 1: preseason, 2: regular season, 3: playoffs
-    
-    #### FETCH
-    # Get all combinations of the query parameters
-    query_combinations = list(itertools.product(abbrevs, query_years, query_season_types))
+    with open(TEAM_CODES_REF_DIR, "r") as f:
+        team_dicts = json.load(f)
 
-    for i,c in enumerate(query_combinations):
-        print(f"{i+1} of {len(query_combinations)}")
-        # Configure query parameters
+    abbrevs = [t["abbrev"] for t in team_dicts]
+    query_years = list(range(start_year, end_year + 1))
+    query_season_types = list(season_types)
+
+    # FETCH
+    query_combinations = list(itertools.product(abbrevs, query_years, query_season_types))
+    for i, c in enumerate(query_combinations, start=1):
+        print(f"{i} of {len(query_combinations)}")
         params = package_params_from_combination(c)
-        
         try:
-            # Call API
-            run_fetch_team_schedule(params=params, force=False)
-            
+            run_fetch_team_schedule(params=params, force=force_fetch)
         except requests.exceptions.RequestException as e:
             print(f"[NETWORK ERROR] {params} -> {e}")
             continue
 
-    #### BUILD
+    # BUILD
     run_build_games()
+
+if __name__ == "__main__":
+    run_build_games_script()
