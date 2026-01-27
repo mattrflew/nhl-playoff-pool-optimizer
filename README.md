@@ -11,7 +11,7 @@ Every year, my family runs a NHL Stanley Cup playoff pool. This project is a sys
 3. Select an optimal fantasy roster (Linear Programming)
 4. And most importantly, win the playoff pool (Bragging Rights).
 
-While this might break the spirit of a fun family competition, it provides for an interesting project. I have also consistently done poorly in this playoff pool, so I clearly need to change my old strategy of hurriedly choosing players the day before the deadline.
+While doing this might break the spirit of a fun family competition, it provides for an interesting project. I have also consistently done poorly in this playoff pool, so I clearly need to change my old strategy of hurriedly choosing players the day before the deadline.
 
 ## Fantasy League Rules
 
@@ -37,6 +37,33 @@ Goalies:
 - Assist: 1 Point
 - Shutout: 2 Points
 
+## Environment setup
+
+This project requires you to run **both** a `requirements.txt` and a `pyproject.toml`.
+
+### Create and activate a virtual environment
+
+From the repository root:
+
+```
+python -m venv .venv
+.venv\Scripts\activate
+```
+
+### Install dependencies
+
+```
+pip install -r requirements.txt
+```
+
+### Install project package
+
+For importing purposes within the project:
+
+```
+pip install -e
+```
+
 ## Data
 
 All data for this project is sourced from the public NHL API. There are two useful community-maintained documentations of this API:
@@ -60,20 +87,16 @@ This script performs the full workflow:
 2. Downloads team schedules across seasons and compiles game-level data (boxscore information),
 3. Downloads player statistics by team and season, and compiles them into tables.
 
-All raw API responses are saved as cache to a _data/raw_ directory at the root of the repository.
+All raw API responses are saved as cache to a `data/raw` directory at the root of the repository.
 
-Similarly, processed results ready for analysis exist at _data/processed_.
+Similarly, processed results ready for analysis exist at `data/processed`.
 
-All code used to query the API and compile data exists in
-
-```
-nhl_pool/dataset
-```
+All code used to query the API and compile data exists in `nhl_pool/dataset`
 
 At a high level:
 
-- _fetch/_ contains wrappers for NHL API endpoints,
-- _pipeliens/_ handles compiling raw responses into tables,
-- _scripts/_ provides run-able scripts for the run and build steps.
+- `fetch/` contains wrappers for NHL API endpoints,
+- `pipelines/` handles compiling raw responses into tables,
+- `scripts/` provides run-able scripts for the run and build steps.
 
 The pipeline is modular such that individual components (i.e. only running player stats) can be run independently if desired.

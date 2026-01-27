@@ -1,4 +1,4 @@
-# Wrapper script to run download and compile function for given season 
+# Wrapper script to run download and compile function for given season(s).
 
 from nhl_pool.dataset.scripts.run_team_codes import run_team_codes
 from nhl_pool.dataset.scripts.run_build_games import run_build_games_script
