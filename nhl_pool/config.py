@@ -8,3 +8,4 @@ REFERENCE_DIR = DATA_DIR / "reference"
 PROCESSED_DIR = DATA_DIR / "processed"
 
 TEAM_CODES_REF_DIR = REFERENCE_DIR / "team_codes.json"
+GAMES_DIR = PROCESSED_DIR / "games.csv"

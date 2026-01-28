@@ -3,6 +3,7 @@
 from nhl_pool.dataset.scripts.run_team_codes import run_team_codes
 from nhl_pool.dataset.scripts.run_build_games import run_build_games_script
 from nhl_pool.dataset.scripts.run_player_stats import run_player_stats_script
+from nhl_pool.dataset.scripts.run_build_standings import run_league_standings
 
 from nhl_pool.config import RAW_DIR, REFERENCE_DIR, PROCESSED_DIR
 
@@ -25,8 +26,14 @@ def run_all(
         season_types=(None,),
         force_fetch=force_games_fetch,
     )
+    # 3) Build standings (from games.csv)
+    print("BUILDING LEAGUE STANDINGS")
+    run_league_standings(
+        start_year=start_year,
+        end_year=end_year,
+        season_types=(2, 3))
 
-    # 3) Player stats (fetch + compile)
+    # 4) Player stats (fetch + compile)
     print(f"DOWNLOADING PLAYER STATS")
     run_player_stats_script(
         start_year=start_year,
