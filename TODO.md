@@ -1,1 +1,5 @@
 [ ] Extend API calls to include a "get_current_roster" method. This way at the start of a playoff season I can download the roster of each playoff team and feed that into the roster optimizer. I can't use current stats call-based method because I don't know when the playoffs stats tables will be populated, might not be until after the first game of playoffs has been started and I want to run this before the playoffs start.
+
+[ ] Grid search the parameters in the Elo rating calculation. Use log-loss as a metric for optimization.
+
+[ ] For the simulations, I could add a per-game randomness factor to add variability.
