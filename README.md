@@ -100,3 +100,11 @@ At a high level:
 - `scripts/` provides run-able scripts for the run and build steps.
 
 The pipeline is modular such that individual components (i.e. only running player stats) can be run independently if desired.
+
+## notebooks
+
+This directory contains all of the exploratory work for this project. They serve as either sandboxes to develop scripts, tune parameters, build models, etc.
+
+The notebooks are organized such that their prefix indicates the chronological order in which they were developed.
+
+All design choices for the overall system are justified throughout these notebooks.
