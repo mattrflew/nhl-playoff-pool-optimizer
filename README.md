@@ -103,7 +103,7 @@ The pipeline is modular such that individual components (i.e. only running playe
 
 ## notebooks
 
-This directory contains all of the exploratory work for this project. They serve as either sandboxes to develop scripts, tune parameters, build models, etc.
+This directory contains all of the exploratory work for this project. They serve to develop scripts, tune parameters, build models, etc.
 
 The notebooks are organized such that their prefix indicates the chronological order in which they were developed.
 
