@@ -11,7 +11,7 @@ def run_all(
     force_team_codes: bool = False,
     force_games_fetch: bool = False,
     force_player_fetch: bool = False,
-    start_year = 2015,
+    start_year = 2010,
     end_year = 2024
 ):
     # 1) Team codes must exist before the other scripts read TEAM_CODES_REF_DIR
