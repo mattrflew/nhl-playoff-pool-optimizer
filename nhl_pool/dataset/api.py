@@ -58,7 +58,7 @@ class NHLAPI:
         for attempt in range(1, self.retries+1):        
             try:
                 response = self.session.get(url, timeout=self.timeout_s)
-                response.raise_for_status() # Raise an exception for bad status codes (4xx or 5xx)
+                response.raise_for_status() # Raise an exception for bad status codes
                 return response.json()
             except requests.exceptions.RequestException as e:
                 last_err = e
