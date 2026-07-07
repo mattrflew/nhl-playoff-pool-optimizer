@@ -1,6 +1,11 @@
 # nhl_pool\dataset
 
-This directory contains all of the scripts to download and process data from the NHL API.
+This directory contains all of the scripts to download and process data from the NHL APIs.
+
+There are two useful community-maintained documentations of these APIs:
+
+- [github.com/Zmalski/NHL-API-Reference](https://github.com/Zmalski/NHL-API-Reference)
+- [gitlab.com/dword4/nhlapi/-/blob/master/new-api.md](https://gitlab.com/dword4/nhlapi/-/blob/master/new-api.md)
 
 ## Directory structure
 

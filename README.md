@@ -1,15 +1,18 @@
 # nhl-playoff-pool-optimizer
 
-Build the highest scoring NHL playoff pool roster using machine learning projections, linear programming, and playoff bracket simulations.
+An end-to-end sports analytics project combining data engineering, Elo rating models, Monte Carlo simulation, and mixed-integer linear programming to optimize NHL playoff fantasy rosters.
 
-## Project Goal
+Full project write-up: [Article](https://mattrflew.github.io/projects/nhl_playoffs)
 
-Every year, my family runs a NHL Stanley Cup playoff pool. This project is a system to:
+## Project Overview
 
-1. Simulate playoff bracket outcomes (ELO Ranking & Monte Carlo Methods)
-2. Predict player points for the playoffs (Machine Learning)
-3. Select an optimal fantasy roster (Linear Programming)
-4. And most importantly, win the playoff pool (Bragging Rights).
+Every year, my family runs an NHL Stanley Cup playoff pool. Participants draft a fixed roster of players before the playoffs begin, and earn fantasy points based on their players' performance throughout the postseason.
+
+This project is a system with the objective to:
+
+1. Simulate playoff bracket outcomes (Elo Rating & Monte Carlo Methods)
+2. Estimate each player's expected playoff value (Statistical Modelling)
+3. Select an optimal fantasy roster (Linear Programming/Optimization)
 
 While doing this might break the spirit of a fun family competition, it provides for an interesting project. I have also consistently done poorly in this playoff pool, so I clearly need to change my old strategy of hurriedly choosing players the day before the deadline.
 
@@ -61,7 +64,7 @@ pip install -r requirements.txt
 For importing purposes within the project:
 
 ```
-pip install -e
+pip install -e .
 ```
 
 ## Data
