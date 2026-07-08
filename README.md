@@ -85,7 +85,7 @@ The pipeline is modular such that individual components (i.e. only running playe
 
 This directory contains all of the exploratory work for this project. They serve to develop scripts, tune parameters, build models, etc.
 
-The notebooks are organized such that their prefix indicates the chronological order in which they were developed.
+The notebooks are organized such that their prefix reflects the order of the analytical pipeline, with each notebook building on the outputs of the previous stage.
 
 All design choices for the overall system are justified throughout these notebooks.
 
