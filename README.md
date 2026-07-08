@@ -14,7 +14,11 @@ This project is a system with the objective to:
 2. Estimate each player's expected playoff value (Statistical Modelling)
 3. Select an optimal fantasy roster (Linear Programming/Optimization)
 
-While doing this might break the spirit of a fun family competition, it provides for an interesting project. I have also consistently done poorly in this playoff pool, so I clearly need to change my old strategy of hurriedly choosing players the day before the deadline.
+While doing this might break the spirit of a fun family competition, it provides for an interesting project.
+
+A high level overview of the whole system is represented in the following diagram.
+
+![System Overview](outputs/diagrams/system_overview.svg)
 
 ## Fantasy League Rules
 
@@ -39,33 +43,6 @@ Goalies:
 - Win: 1 Point
 - Assist: 1 Point
 - Shutout: 2 Points
-
-## Environment setup
-
-This project requires you to run **both** a `requirements.txt` and a `pyproject.toml`.
-
-### Create and activate a virtual environment
-
-From the repository root:
-
-```
-python -m venv .venv
-.venv\Scripts\activate
-```
-
-### Install dependencies
-
-```
-pip install -r requirements.txt
-```
-
-### Install project package
-
-For importing purposes within the project:
-
-```
-pip install -e .
-```
 
 ## Data
 
@@ -111,3 +88,30 @@ This directory contains all of the exploratory work for this project. They serve
 The notebooks are organized such that their prefix indicates the chronological order in which they were developed.
 
 All design choices for the overall system are justified throughout these notebooks.
+
+## Environment setup
+
+This project requires you to run **both** a `requirements.txt` and a `pyproject.toml`.
+
+### Create and activate a virtual environment
+
+From the repository root:
+
+```
+python -m venv .venv
+.venv\Scripts\activate
+```
+
+### Install dependencies
+
+```
+pip install -r requirements.txt
+```
+
+### Install project package
+
+For importing purposes within the project:
+
+```
+pip install -e .
+```
